@@ -1,17 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { createStore } from 'redux';
+import todoApp from './client/reducers';
+import Root from './client/components/Root';
 import './index.css';
-import App from './client/containers/App/App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const store = createStore(todoApp);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+render(<Root store={store} />, document.getElementById('root'));
