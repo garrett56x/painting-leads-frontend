@@ -1,16 +1,15 @@
 .header {
-  background-color: #61646b;
-  min-height: 40px;
+  background-color: #292929;
+  min-height: 42px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   color: white;
-  border-bottom: solid black 2px;
+  padding: 0 15px;
 }
 
 .logo-wrapper {
-    margin-left: 15px;
     display: flex;
     justify-content: center;
 }
