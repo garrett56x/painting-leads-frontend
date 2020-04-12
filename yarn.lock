@@ -2640,6 +2640,10 @@ execa@^1.0.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
+exenv@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
+
 expand-brackets@^2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/expand-brackets/-/expand-brackets-2.1.4.tgz#b77735e315ce30f6b6eff0f83b04151a22449622"
@@ -4727,6 +4731,17 @@ react-dom@^16.12.0:
     prop-types "^15.6.2"
     scheduler "^0.19.1"
 
+react-from-dom@^0.3.0:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/react-from-dom/-/react-from-dom-0.3.1.tgz#49ba6e7d679314807786aa88a37436ec73637bce"
+
+react-inlinesvg@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-inlinesvg/-/react-inlinesvg-1.2.0.tgz#fa63bda004ed941449a034574269ad4819cdbc8d"
+  dependencies:
+    exenv "^1.2.2"
+    react-from-dom "^0.3.0"
+
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.9.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -5247,6 +5262,10 @@ signal-exit@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
+simple-html-tokenizer@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/simple-html-tokenizer/-/simple-html-tokenizer-0.1.1.tgz#05c2eec579ffffe145a030ac26cfea61b980fabe"
+
 slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
@@ -5570,6 +5589,14 @@ supports-color@^5.3.0:
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.5.0.tgz#e2e69a44ac8772f78a1ec0b35b689df6530efc8f"
   dependencies:
     has-flag "^3.0.0"
+
+svg-inline-loader@^0.8.2:
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/svg-inline-loader/-/svg-inline-loader-0.8.2.tgz#9872414f9e4141601e04eb80cda748c9a50dae71"
+  dependencies:
+    loader-utils "^1.1.0"
+    object-assign "^4.0.1"
+    simple-html-tokenizer "^0.1.1"
 
 symbol-observable@^1.2.0:
   version "1.2.0"

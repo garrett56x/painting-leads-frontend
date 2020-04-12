@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import logo from '../../assets/logo';
-// import './Header.css';
+import SVG from 'react-inlinesvg';
+import './Header.scss';
+import logo from '../../assets/logo.svg';
 
 export const Header = () => (
   <div className="header">
       <Link to="/" className="logo-wrapper" style={{ textDecoration: 'none' }}>
-        {/* <img src={logo} className="logo" alt="logo" /> */}
+        <SVG src={logo} className="logo" alt="logo" />
         <span className="logo-title">Painting Leads</span>
       </Link>
   </div>
