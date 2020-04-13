@@ -1,16 +1,23 @@
 const webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
     mode: 'development',
     resolve: {
         extensions: ['.js', '.jsx']
     },
+    entry: ["@babel/polyfill", './src/index.jsx'],
     module: {
         rules: [
             {
                 test: /\.jsx?$/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env',
+                              '@babel/react',{
+                              'plugins': ['@babel/plugin-proposal-class-properties']}]
+                }
             },
             {
                 test: /\.scss$/,
@@ -35,13 +42,13 @@ module.exports = {
         }),
     ],
     devServer: {
-        historyApiFallback: true,
         hot: true,
+        historyApiFallback: true,
     },
     externals: {
         // global app config object
         config: JSON.stringify({
-            apiUrl: 'http://localhost:4000'
+            apiUrl: 'http://localhost:3000'
         })
     }
 }

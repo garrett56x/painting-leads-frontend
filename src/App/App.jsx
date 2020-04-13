@@ -8,6 +8,7 @@ import { Header } from '../components/Header/Header';
 import { Home } from '../containers/Home/Home';
 import { Login } from '../containers/Login/Login';
 import { Register } from '../containers/Register/Register';
+import { Leads } from '../containers/Leads/Leads';
 // import './App.css';
 
 class App extends React.Component {
@@ -35,6 +36,7 @@ class App extends React.Component {
                                 <PrivateRoute exact path="/" component={Home} />
                                 <Route path="/login" component={Login} />
                                 <Route path="/register" component={Register} />
+                                <Route path="/leads" component={Leads} />
                                 <Redirect from="*" to="/" />
                             </Switch>
                         </Router>
