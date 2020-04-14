@@ -1,4 +1,4 @@
-import config from 'config';
+// import config from 'config';
 import { authHeader } from '../helpers/auth-header';
 
 export const userService = {
@@ -9,6 +9,10 @@ export const userService = {
     getById,
     update,
     delete: _delete
+};
+
+const config = {
+    apiUrl: "http://localhost:8080",
 };
 
 function login(username, password) {

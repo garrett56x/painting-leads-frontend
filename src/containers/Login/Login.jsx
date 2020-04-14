@@ -64,6 +64,9 @@ class Login extends React.Component {
                         }
                         <Link to="/register" className="btn btn-link">Register</Link>
                     </div>
+                    <p>
+                        <Link to="/leads">Leads</Link>
+                    </p>
                 </form>
             </div>
         );

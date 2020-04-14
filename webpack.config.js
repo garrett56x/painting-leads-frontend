@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
 
 module.exports = {
     mode: 'development',
@@ -44,11 +43,15 @@ module.exports = {
     devServer: {
         hot: true,
         historyApiFallback: true,
-    },
-    externals: {
-        // global app config object
-        config: JSON.stringify({
-            apiUrl: 'http://localhost:3000'
-        })
+        port: 8081,
+        proxy: {
+            '/api': {
+                target: 'http://localhost:3000/',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/api': '',
+                },
+            },
+        },
     }
 }

@@ -1,32 +1,37 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import config from 'config';
 
 class Leads extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            data: null,
+            leads: [],
         };
     }
 
     componentDidMount() {
         console.log("componentDidMount");
     
-        fetch(`${config.apiUrl}/leads`)
+        fetch('/api/leads')
         .then(res => res.json())
         .then((data) => {   
-            console.log(data);
-            this.setState({ data });
+            this.setState({ leads: data });
         })
         .catch(console.log);
     }
 
     render() {
+        const { leads } = this.state;
+
         return (
-            <div>
+            <div className="leads-container">
                 <h1>Leads</h1>
+                <div className="leads">
+                    {leads.map((lead) => (
+                        <li key={lead.id}>{lead.name}</li>
+                    ))}
+                </div>
             </div>
         );
     }

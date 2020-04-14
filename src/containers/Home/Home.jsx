@@ -68,6 +68,9 @@ class Home extends React.Component {
                 <p>
                     <Link to="/login">Logout</Link>
                 </p>
+                <p>
+                    <Link to="/leads">Leads</Link>
+                </p>
             </div>
         );
     }
