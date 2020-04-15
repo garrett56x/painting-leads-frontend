@@ -11,36 +11,11 @@ class Home extends React.Component {
 
     componentDidMount() {
         this.props.getUsers();
-
-
-        // fetch('http://localhost:4000/users')
-        // .then(res => res.json())
-        // .then((data) => {   
-        //     this.setState({ data })
-        // })
-        // .catch(console.log);
-
-        // this.callBackendAPI()
-        // .then(res => this.setState({ data: res.express }))
-        // .catch(err => console.log(err));
     }
 
     handleDeleteUser(id) {
         return (e) => this.props.deleteUser(id);
     }
-
-    // callBackendAPI = async () => {
-    //     const response = await fetch('/express_backend');
-    //     const body = await response.json();
-
-    //     console.log('response: ');
-    //     console.log(response);
-    
-    //     if (response.status !== 200) {
-    //       throw Error(body.message) 
-    //     }
-    //     return body;
-    // };
 
     render() {
         const { user, users } = this.props;
