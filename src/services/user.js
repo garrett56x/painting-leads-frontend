@@ -15,26 +15,26 @@ const config = {
     apiUrl: "http://localhost:8080",
 };
 
-function login(username, password) {
+function login(email, password) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ email, password })
     };
 
-    return fetch(`${config.apiUrl}/users/authenticate`, requestOptions)
+    return fetch('/api/authenticate', requestOptions)
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('userId', JSON.stringify(user.id));
 
             return user;
         });
 }
 
 function logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('user');
+    // remove userId from local storage to log user out
+    localStorage.removeItem('userId');
 }
 
 function getAll() {
@@ -62,7 +62,7 @@ function register(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`${config.apiUrl}/users/register`, requestOptions).then(handleResponse);
+    return fetch('/api/users', requestOptions).then(handleResponse);
 }
 
 function update(user) {
