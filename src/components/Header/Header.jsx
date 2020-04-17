@@ -11,5 +11,8 @@ export const Header = () => (
         <SVG src={logo} className="logo" alt="logo" />
         <span className="logo-title">Painting Leads</span>
       </Link>
+      <div className="auth-wrapper">
+        <Link to="/login">Logout</Link>
+      </div>
   </div>
 );

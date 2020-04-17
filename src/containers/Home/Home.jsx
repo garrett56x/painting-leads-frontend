@@ -24,9 +24,6 @@ class Home extends React.Component {
                 <h1>Hi {user.firstName}!</h1>
                 <p>You're logged in with React!!</p>
                 <p>
-                    <Link to="/login">Logout</Link>
-                </p>
-                <p>
                     <Link to="/leads">Leads</Link>
                 </p>
             </div>
