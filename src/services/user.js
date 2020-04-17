@@ -33,6 +33,7 @@ function login(email, password) {
 }
 
 function logout() {
+    console.log("LOGGING OUT");
     // remove userId from local storage to log user out
     localStorage.removeItem('userId');
 }
