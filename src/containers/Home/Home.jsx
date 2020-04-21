@@ -1,27 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { userActions } from '../../actions/user';
+import fetchUserLeads from '../../actions/fetchUserLeads';
+import { getUserLeads, getUserLeadsError, getUserLeadsLoading } from '../../reducers/user';
 
 class Home extends React.Component {
-    state = {
-        data: null,
-    };
-
     componentDidMount() {
-        // this.props.getUsers();
-    }
-
-    handleDeleteUser(id) {
-        return (e) => this.props.deleteUser(id);
+        this.props.fetchUserLeads();
     }
 
     render() {
-        const { user, users } = this.props;
+        const { leads, loading, error } = this.props;
+
+        if (error) {
+            return (
+                <h1>Error</h1>
+            );
+        }
+
+        if (loading) {
+            return (
+                <h1>Loading...</h1>
+            );
+        }
+
         return (
             <div className="col-md-6 col-md-offset-3">
-                <h1>Hi {user.firstName}!</h1>
+                <h1>Hi !</h1>
                 <p>You're logged in with React!!</p>
+                <p>You have {leads.length} leads.</p>
                 <p>
                     <Link to="/leads">Leads</Link>
                 </p>
@@ -30,16 +37,15 @@ class Home extends React.Component {
     }
 }
 
-function mapState(state) {
-    const { users, authentication } = state;
-    const { user } = authentication;
-    return { user, users };
+function mapStateToProps(state) {
+    return {
+        loading: getUserLeadsLoading(state.user),
+        leads: getUserLeads(state.user),
+        error: getUserLeadsError(state.user),
+    };
 }
 
-const actionCreators = {
-    getUsers: userActions.getAll,
-    deleteUser: userActions.delete
-}
+const mapDispatchToProps = { fetchUserLeads };
 
-const connectedHome = connect(mapState, actionCreators)(Home);
+const connectedHome = connect(mapStateToProps, mapDispatchToProps)(Home);
 export { connectedHome as Home };

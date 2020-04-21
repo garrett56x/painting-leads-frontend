@@ -3,12 +3,37 @@ import { userService } from '../services/user';
 import { alertActions } from './alert';
 import { history } from '../helpers/history';
 
+
+export const FETCH_USER_LEADS_REQUEST = 'FETCH_USER_LEADS_REQUEST';
+export const FETCH_USER_LEADS_SUCCESS = 'FETCH_USER_LEADS_SUCCESS';
+export const FETCH_USER_LEADS_FAILURE = 'FETCH_USER_LEADS_FAILURE';
+
+export function fetchUserLeadsRequest() {
+    return {
+        type: FETCH_USER_LEADS_REQUEST
+    }
+}
+
+export function fethcUserLeadsSuccess(leads) {
+    return {
+        type: FETCH_USER_LEADS_SUCCESS,
+        leads: leads
+    }
+}
+
+export function fetchUserLeadsFailure(error) {
+    return {
+        type: FETCH_USER_LEADS_FAILURE,
+        error: error
+    }
+}
+
 export const userActions = {
     login,
     logout,
     register,
     getAll,
-    delete: _delete
+    delete: _delete,
 };
 
 function login(email, password) {
@@ -93,3 +118,19 @@ function _delete(id) {
     function success(id) { return { type: userConstants.DELETE_SUCCESS, id } }
     function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
 }
+
+// function getLeads() {
+//     return dispatch => {
+//         dispatch(request());
+
+//         userService.getLeads()
+//             .then(
+//                 leads => dispatch(success(leads)),
+//                 error => dispatch(failure(error.toString()))
+//             );
+//     };
+
+//     function request() { return { type: userConstants.GET_LEADS_REQUEST } }
+//     function success(leads) { return { type: userConstants.GET_LEADS_SUCCESS, leads } }
+//     function failure(error) { return { type: userConstants.GET_LEADS_FAILURE, error } }
+// }
