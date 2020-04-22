@@ -5,9 +5,9 @@ import {
 } from './user';
 
 function fetchUserLeads() {
-    return dispatch => {
+    return (dispatch, getState) => {
         dispatch(userFetchLeadsRequest());
-        fetch('/api/users/1/leads')
+        fetch(`/api/users/${getState().user.userId}/leads`)
         .then(res => res.json())
         .then(res => {
             if (res.error) {
