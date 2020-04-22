@@ -1,34 +1,78 @@
-import { userConstants } from '../constants/user';
 import {
-  FETCH_USER_LEADS_REQUEST,
-  FETCH_USER_LEADS_SUCCESS,
-  FETCH_USER_LEADS_FAILURE
+  USER_LOGIN_REQUEST,
+  USER_LOGIN_SUCCESS,
+  USER_LOGIN_FAILURE,
+  USER_LOGOUT,
+  USER_FETCH_LEADS_REQUEST,
+  USER_FETCH_LEADS_SUCCESS,
+  USER_FETCH_LEADS_FAILURE
 } from '../actions/user';
 
+const userId = JSON.parse(localStorage.getItem('userId'));
+
 const initialState = {
-  loading: false,
-  leads: [],
-  error: null,
+  loggingIn: false,
+  loggedIn: !!userId,
+  userId: userId || null,
+  leads: {
+    loading: false,
+    leads: [],
+    error: null,
+  },
 };
 
 export function user(state = initialState, action) {
   switch (action.type) {
-    case FETCH_USER_LEADS_REQUEST:
+    case USER_LOGIN_REQUEST:
       return {
         ...state,
-        loading: true,
+        loggingIn: true,
       };
-    case FETCH_USER_LEADS_SUCCESS:
+    case USER_LOGIN_SUCCESS:
       return {
         ...state,
-        loading: false,
-        leads: action.leads
+        loggingIn: false,
+        loggedIn: true,
+        userId: action.userId,
       };
-    case FETCH_USER_LEADS_FAILURE:
+    case USER_LOGIN_FAILURE:
+      return {
+        ...state,
+        loggingIn: false,
+        loggedIn: false,
+        userId: null,
+      };
+    case USER_LOGOUT:
+      return {
+        ...state,
+        loggedIn: false,
+        userId: null,
+      };
+    case USER_FETCH_LEADS_REQUEST:
+      return {
+        ...state,
+        leads: {
+          ...state.leads,
+          loading: true,
+        }
+      };
+    case USER_FETCH_LEADS_SUCCESS:
+      return {
+        ...state,
+        leads: {
+          ...state.leads,
+          loading: false,
+          leads: action.leads,
+        }
+      };
+    case USER_FETCH_LEADS_FAILURE:
       return { 
         ...state,
-        loading: false,
-        error: action.error
+        leads: {
+          ...state.leads,
+          loading: false,
+          error: action.error,
+        }
       };
     // case userConstants.DELETE_REQUEST:
     //   // add 'deleting:true' property to user being deleted
@@ -65,6 +109,7 @@ export function user(state = initialState, action) {
   }
 }
 
-export const getUserLeads = state => state.leads;
-export const getUserLeadsLoading = state => state.loading;
-export const getUserLeadsError = state => state.error;
+export const getUserId = state => state.userId;
+export const getUserLeads = state => state.leads.leads;
+export const getUserLeadsLoading = state => state.leads.loading;
+export const getUserLeadsError = state => state.leads.error;

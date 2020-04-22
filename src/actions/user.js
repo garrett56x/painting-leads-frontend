@@ -3,29 +3,57 @@ import { userService } from '../services/user';
 import { alertActions } from './alert';
 import { history } from '../helpers/history';
 
+export const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST';
+export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
+export const USER_LOGIN_FAILURE = 'USER_LOGIN_FAILURE';
+export const USER_LOGOUT = 'USER_LOGOUT';
+export const USER_FETCH_LEADS_REQUEST = 'USER_FETCH_LEADS_REQUEST';
+export const USER_FETCH_LEADS_SUCCESS = 'USER_FETCH_LEADS_SUCCESS';
+export const USER_FETCH_LEADS_FAILURE = 'USER_FETCH_LEADS_FAILURE';
 
-export const FETCH_USER_LEADS_REQUEST = 'FETCH_USER_LEADS_REQUEST';
-export const FETCH_USER_LEADS_SUCCESS = 'FETCH_USER_LEADS_SUCCESS';
-export const FETCH_USER_LEADS_FAILURE = 'FETCH_USER_LEADS_FAILURE';
-
-export function fetchUserLeadsRequest() {
+export function userLoginRequest() {
     return {
-        type: FETCH_USER_LEADS_REQUEST
-    }
+        type: USER_LOGIN_REQUEST,
+    };
 }
 
-export function fethcUserLeadsSuccess(leads) {
+export function userLoginSuccess(userId) {
     return {
-        type: FETCH_USER_LEADS_SUCCESS,
-        leads: leads
-    }
+        type: USER_LOGIN_SUCCESS,
+        userId,
+    };
 }
 
-export function fetchUserLeadsFailure(error) {
+export function userLoginFailure() {
     return {
-        type: FETCH_USER_LEADS_FAILURE,
-        error: error
-    }
+        type: USER_LOGIN_FAILURE,
+    };
+}
+
+export function userLogout() {
+    return {
+        type: USER_LOGOUT,
+    };
+}
+
+export function userFetchLeadsRequest() {
+    return {
+        type: USER_FETCH_LEADS_REQUEST,
+    };
+}
+
+export function userFetchLeadsSuccess(leads) {
+    return {
+        type: USER_FETCH_LEADS_SUCCESS,
+        leads,
+    };
+}
+
+export function userFetchLeadsFailure(error) {
+    return {
+        type: USER_FETCH_LEADS_FAILURE,
+        error,
+    };
 }
 
 export const userActions = {
@@ -118,19 +146,3 @@ function _delete(id) {
     function success(id) { return { type: userConstants.DELETE_SUCCESS, id } }
     function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
 }
-
-// function getLeads() {
-//     return dispatch => {
-//         dispatch(request());
-
-//         userService.getLeads()
-//             .then(
-//                 leads => dispatch(success(leads)),
-//                 error => dispatch(failure(error.toString()))
-//             );
-//     };
-
-//     function request() { return { type: userConstants.GET_LEADS_REQUEST } }
-//     function success(leads) { return { type: userConstants.GET_LEADS_SUCCESS, leads } }
-//     function failure(error) { return { type: userConstants.GET_LEADS_FAILURE, error } }
-// }

@@ -38,10 +38,11 @@ class Home extends React.Component {
 }
 
 function mapStateToProps(state) {
+    const { user } = state;
     return {
-        loading: getUserLeadsLoading(state.user),
-        leads: getUserLeads(state.user),
-        error: getUserLeadsError(state.user),
+        loading: getUserLeadsLoading(user),
+        leads: getUserLeads(user),
+        error: getUserLeadsError(user),
     };
 }
 
