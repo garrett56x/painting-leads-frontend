@@ -7,9 +7,9 @@ export const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST';
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
 export const USER_LOGIN_FAILURE = 'USER_LOGIN_FAILURE';
 export const USER_LOGOUT = 'USER_LOGOUT';
-export const USER_FETCH_LEADS_REQUEST = 'USER_FETCH_LEADS_REQUEST';
-export const USER_FETCH_LEADS_SUCCESS = 'USER_FETCH_LEADS_SUCCESS';
-export const USER_FETCH_LEADS_FAILURE = 'USER_FETCH_LEADS_FAILURE';
+export const USER_FETCH_DATA_REQUEST = 'USER_FETCH_DATA_REQUEST';
+export const USER_FETCH_DATA_SUCCESS = 'USER_FETCH_DATA_SUCCESS';
+export const USER_FETCH_DATA_FAILURE = 'USER_FETCH_DATA_FAILURE';
 
 export function userLoginRequest() {
     return {
@@ -36,22 +36,22 @@ export function userLogout() {
     };
 }
 
-export function userFetchLeadsRequest() {
+export function userFetchDataRequest() {
     return {
-        type: USER_FETCH_LEADS_REQUEST,
+        type: USER_FETCH_DATA_REQUEST,
     };
 }
 
-export function userFetchLeadsSuccess(leads) {
+export function userFetchDataSuccess(data) {
     return {
-        type: USER_FETCH_LEADS_SUCCESS,
-        leads,
+        type: USER_FETCH_DATA_SUCCESS,
+        data,
     };
 }
 
-export function userFetchLeadsFailure(error) {
+export function userFetchDataFailure(error) {
     return {
-        type: USER_FETCH_LEADS_FAILURE,
+        type: USER_FETCH_DATA_FAILURE,
         error,
     };
 }

@@ -1,23 +1,23 @@
 import {
-    userFetchLeadsRequest,
-    userFetchLeadsSuccess,
-    userFetchLeadsFailure
-} from './userLeads';
+    userFetchDataRequest,
+    userFetchDataSuccess,
+    userFetchDataFailure
+} from './user';
 
 function fetchUserLeads() {
     return (dispatch, getState) => {
-        dispatch(userFetchLeadsRequest());
-        fetch(`/api/users/${getState().user.userId}/leads`)
+        dispatch(userFetchDataRequest());
+        fetch(`/api/users/${getState().user.userId}`)
         .then(res => res.json())
         .then(res => {
             if (res.error) {
                 throw(res.error);
             }
-            dispatch(userFetchLeadsSuccess(res));
+            dispatch(userFetchDataSuccess(res));
             return res;
         })
         .catch(error => {
-            dispatch(userFetchLeadsFailure(error));
+            dispatch(userFetchDataFailure(error));
         })
     }
 }

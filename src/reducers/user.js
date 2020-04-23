@@ -3,9 +3,9 @@ import {
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAILURE,
   USER_LOGOUT,
-  USER_FETCH_LEADS_REQUEST,
-  USER_FETCH_LEADS_SUCCESS,
-  USER_FETCH_LEADS_FAILURE
+  USER_FETCH_DATA_REQUEST,
+  USER_FETCH_DATA_SUCCESS,
+  USER_FETCH_DATA_FAILURE,
 } from '../actions/user';
 
 const userId = JSON.parse(localStorage.getItem('userId'));
@@ -14,11 +14,8 @@ const initialState = {
   loggingIn: false,
   loggedIn: !!userId,
   userId: userId || null,
-  leads: {
-    loading: false,
-    leads: [],
-    error: null,
-  },
+  name: null,
+  error: null,
 };
 
 export function user(state = initialState, action) {
@@ -48,31 +45,19 @@ export function user(state = initialState, action) {
         loggedIn: false,
         userId: null,
       };
-    case USER_FETCH_LEADS_REQUEST:
+    case USER_FETCH_DATA_REQUEST:
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          loading: true,
-        }
       };
-    case USER_FETCH_LEADS_SUCCESS:
+    case USER_FETCH_DATA_SUCCESS:
       return {
         ...state,
-        leads: {
-          ...state.leads,
-          loading: false,
-          leads: action.leads,
-        }
+        name: action.data.name,
       };
-    case USER_FETCH_LEADS_FAILURE:
-      return { 
+    case USER_FETCH_DATA_FAILURE:
+      return {
         ...state,
-        leads: {
-          ...state.leads,
-          loading: false,
-          error: action.error,
-        }
+        error: action.error,
       };
     // case userConstants.DELETE_REQUEST:
     //   // add 'deleting:true' property to user being deleted
@@ -110,6 +95,6 @@ export function user(state = initialState, action) {
 }
 
 export const getUserId = state => state.userId;
-export const getUserLeads = state => state.leads.leads;
-export const getUserLeadsLoading = state => state.leads.loading;
-export const getUserLeadsError = state => state.leads.error;
+export const getUserName = state => state.name;
+export const getUserDataLoading = state => state.loading;
+export const getUserDataError = state => state.error;

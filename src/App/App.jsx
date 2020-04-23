@@ -43,14 +43,14 @@ class App extends React.Component {
     }
 }
 
-function mapState(state) {
+function mapStateToProps(state) {
     const { alert } = state;
     return { alert };
 }
 
-const actionCreators = {
-    clearAlerts: alertActions.clear
+const mapDispatchToProps = {
+    clearAlerts: alertActions.clear,
 };
 
-const connectedApp = connect(mapState, actionCreators)(App);
+const connectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
 export { connectedApp as App };
