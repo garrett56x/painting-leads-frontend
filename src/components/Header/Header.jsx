@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { userActions } from '../../actions/user';
+import { userLogout } from '../../actions/user';
 import SVG from 'react-inlinesvg';
 import './Header.scss';
 // @ts-ignore
@@ -31,12 +31,12 @@ class Header extends React.Component {
 };
 
 function mapState(state) {
-  const { loggedIn } = state.authentication;
+  const { loggedIn } = state.user;
   return { loggedIn };
 }
 
 const actionCreators = {
-  logout: userActions.logout
+  logout: userLogout
 }
 
 const connectedHeader = connect(mapState, actionCreators)(Header);

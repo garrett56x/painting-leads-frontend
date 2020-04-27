@@ -15,6 +15,7 @@ const initialState = {
   loggedIn: !!userId,
   userId: userId || null,
   name: null,
+  leads: [],
   error: null,
 };
 
@@ -26,11 +27,14 @@ export function user(state = initialState, action) {
         loggingIn: true,
       };
     case USER_LOGIN_SUCCESS:
+      console.log("LOGIN SUCCESS REDUCER");
       return {
         ...state,
         loggingIn: false,
         loggedIn: true,
         userId: action.userId,
+        name: action.name,
+        leads: action.leads,
       };
     case USER_LOGIN_FAILURE:
       return {
@@ -44,6 +48,8 @@ export function user(state = initialState, action) {
         ...state,
         loggedIn: false,
         userId: null,
+        name: null,
+        leads: [],
       };
     case USER_FETCH_DATA_REQUEST:
       return {

@@ -31,47 +31,41 @@ export function userLoginFailure() {
 }
 
 export function userLogout() {
+    localStorage.removeItem('userId');
     return {
         type: USER_LOGOUT,
     };
 }
 
-export function userFetchDataRequest() {
+function userFetchDataRequest() {
     return {
         type: USER_FETCH_DATA_REQUEST,
     };
 }
 
-export function userFetchDataSuccess(data) {
+function userFetchDataSuccess(data) {
     return {
         type: USER_FETCH_DATA_SUCCESS,
         data,
     };
 }
 
-export function userFetchDataFailure(error) {
+function userFetchDataFailure(error) {
     return {
         type: USER_FETCH_DATA_FAILURE,
         error,
     };
 }
 
-export const userActions = {
-    login,
-    logout,
-    register,
-    getAll,
-    delete: _delete,
-};
-
 function login(email, password) {
     return dispatch => {
-        dispatch(request({ email }));
+        dispatch(request());
 
         userService.login(email, password)
             .then(
                 user => { 
-                    dispatch(success(user));
+                    dispatch(success(user.id));
+                    console.log(user);
                     history.push('/');
                 },
                 error => {
@@ -81,15 +75,43 @@ function login(email, password) {
             );
     };
 
-    function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
-    function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
-    function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+    function request() { return { type: USER_LOGIN_REQUEST } }
+    function success(userId) { return { type: USER_LOGIN_SUCCESS, userId } }
+    function failure(error) { return { type: USER_LOGIN_FAILURE, error } }
 }
 
-function logout() {
-    userService.logout();
-    return { type: userConstants.LOGOUT };
+function fetchUserData() {
+    return (dispatch, getState) => {
+        dispatch(userFetchDataRequest());
+        fetch(`/api/users/${getState().user.userId}`)
+        .then(res => res.json())
+        .then(res => {
+            if (res.error) {
+                throw(res.error);
+            }
+            dispatch(userFetchDataSuccess(res));
+            return res;
+        })
+        .catch(error => {
+            dispatch(userFetchDataFailure(error));
+        })
+    }
 }
+
+export const userActions = {
+    fetchUserData,
+    userLogout,
+    login,
+    // logout,
+    register,
+    getAll,
+    delete: _delete,
+};
+
+// function logout() {
+//     userService.logout();
+//     return { type: userConstants.LOGOUT };
+// }
 
 function register(user) {
     return dispatch => {

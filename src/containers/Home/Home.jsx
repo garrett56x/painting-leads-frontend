@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import fetchUserData from '../../actions/fetchUserData';
-import fetchUserLeads from '../../actions/fetchUserLeads';
+import { userActions } from '../../actions/user';
+import { userLeadsActions } from '../../actions/userLeads';
 import { getUserName } from '../../reducers/user';
 import { getUserLeads, getUserLeadsError, getUserLeadsLoading } from '../../reducers/userLeads';
 
@@ -49,7 +49,10 @@ function mapStateToProps(state) {
     };
 }
 
-const mapDispatchToProps = { fetchUserData, fetchUserLeads };
+const mapDispatchToProps = {
+    fetchUserData: userActions.fetchUserData,
+    fetchUserLeads: userLeadsActions.fetchUserLeads,
+};
 
 const connectedHome = connect(mapStateToProps, mapDispatchToProps)(Home);
 export { connectedHome as Home };
