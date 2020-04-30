@@ -27,7 +27,6 @@ export function user(state = initialState, action) {
         loggingIn: true,
       };
     case USER_LOGIN_SUCCESS:
-      console.log("LOGIN SUCCESS REDUCER");
       return {
         ...state,
         loggingIn: false,

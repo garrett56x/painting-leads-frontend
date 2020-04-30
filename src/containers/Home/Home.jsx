@@ -30,7 +30,7 @@ class Home extends React.Component {
         return (
             <div className="col-md-6 col-md-offset-3">
                 <h1>Hi {name}!</h1>
-                <p>You have {leads.length} leads.</p>
+                <p>You have {leads.length} lead{leads.length === 1 ? '' : 's'}.</p>
                 <p>
                     <Link to="/leads">Leads</Link>
                 </p>

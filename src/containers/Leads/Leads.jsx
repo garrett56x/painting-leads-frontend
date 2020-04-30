@@ -10,9 +10,7 @@ class Leads extends React.Component {
         };
     }
 
-    componentDidMount() {
-        console.log("componentDidMount");
-    
+    componentDidMount() {    
         fetch('/api/leads')
         .then(res => res.json())
         .then((data) => {   
