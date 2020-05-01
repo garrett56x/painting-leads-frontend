@@ -2,8 +2,8 @@
 import { authHeader } from '../helpers/auth-header';
 
 export const userService = {
-    login,
-    logout,
+    // login,
+    // logout,
     register,
     getAll,
     getById,
@@ -16,28 +16,28 @@ const config = {
     apiUrl: "http://localhost:8080",
 };
 
-function login(email, password) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-    };
+// function login(email, password) {
+//     const requestOptions = {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({ email, password })
+//     };
 
-    return fetch('/api/authenticate', requestOptions)
-        .then(handleResponse)
-        .then(user => {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('userId', JSON.stringify(user.id));
+//     return fetch('/api/authenticate', requestOptions)
+//         .then(handleResponse)
+//         .then(user => {
+//             // store user details and jwt token in local storage to keep user logged in between page refreshes
+//             localStorage.setItem('userId', JSON.stringify(user.id));
 
-            return user;
-        });
-}
+//             return user;
+//         });
+// }
 
-function logout() {
-    console.log("LOGGING OUT");
-    // remove userId from local storage to log user out
-    localStorage.removeItem('userId');
-}
+// function logout() {
+//     console.log("LOGGING OUT");
+//     // remove userId from local storage to log user out
+//     localStorage.removeItem('userId');
+// }
 
 function getAll() {
     const requestOptions = {
@@ -102,7 +102,7 @@ function handleResponse(response) {
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
-                logout();
+                // logout();
                 location.reload(true);
             }
 

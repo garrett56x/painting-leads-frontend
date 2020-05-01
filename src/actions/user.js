@@ -1,5 +1,4 @@
 import { userConstants } from '../constants/user';
-import { userService } from '../services/user';
 import { alertActions } from './alert';
 import { history } from '../helpers/history';
 
@@ -58,21 +57,29 @@ function userFetchDataFailure(error) {
 }
 
 function login(email, password) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+    };
+    
     return dispatch => {
         dispatch(request());
 
-        userService.login(email, password)
-            .then(
-                user => { 
-                    dispatch(success(user.id));
-                    console.log(user);
-                    history.push('/');
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
-                }
-            );
+        fetch('/api/authenticate', requestOptions)
+        .then(handleResponse)
+        .then(
+            user => {
+                // store user details and jwt token in local storage to keep user logged in between page refreshes
+                localStorage.setItem('userId', JSON.stringify(user.id));
+                dispatch(success(user.id));
+                history.push('/');
+            },
+            error => {
+                dispatch(failure(error.toString()));
+                dispatch(alertActions.error(error.toString()));
+            }
+        );
     };
 
     function request() { return { type: USER_LOGIN_REQUEST } }
@@ -96,6 +103,24 @@ function fetchUserData() {
             dispatch(userFetchDataFailure(error));
         })
     }
+}
+
+function handleResponse(response) {
+    return response.text().then(text => {
+        const data = text && JSON.parse(text);
+        if (!response.ok) {
+            if (response.status === 401) {
+                // auto logout if 401 response returned from api
+                userLogout();
+                location.reload(true);
+            }
+
+            const error = (data && data.message) || response.statusText;
+            return Promise.reject(error);
+        }
+
+        return data;
+    });
 }
 
 export const userActions = {
