@@ -79,7 +79,7 @@ function mapState(state) {
 }
 
 const actionCreators = {
-    login: userActions.login,
+    login: userActions.userLogin,
     logout: userActions.userLogout
 };
 

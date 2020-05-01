@@ -2,6 +2,9 @@ import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAILURE,
+  USER_REGISTER_REQUEST,
+  USER_REGISTER_SUCCESS,
+  USER_REGISTER_FAILURE,
   USER_LOGOUT,
   USER_FETCH_DATA_REQUEST,
   USER_FETCH_DATA_SUCCESS,
@@ -41,6 +44,19 @@ export function user(state = initialState, action) {
         loggingIn: false,
         loggedIn: false,
         userId: null,
+      };
+    case USER_REGISTER_REQUEST:
+      return {
+        ...state,
+      };
+    case USER_REGISTER_SUCCESS:
+      return {
+        ...state,
+      };
+    case USER_REGISTER_FAILURE:
+      return {
+        ...state,
+        error: action.error,
       };
     case USER_LOGOUT:
       return {
