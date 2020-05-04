@@ -23,8 +23,7 @@ export function leadsFetchFailure(error) {
 }
 
 function fetchLeads() {
-    console.log("FETCHING LEADS");
-    return (dispatch) => {
+    return (dispatch, getState) => {
         dispatch(leadsFetchRequest());
         fetch(`/api/leads`)
         .then(res => res.json())
@@ -32,8 +31,18 @@ function fetchLeads() {
             if (res.error) {
                 throw(res.error);
             }
-            dispatch(leadsFetchSuccess(res));
-            return res;
+            const userLeadIds = [];
+            getState().userLeads.leads.forEach((userLead) => userLeadIds.push(userLead.lead_id));
+
+            const filteredLeads = [];
+            res.forEach((lead) => {
+                if (userLeadIds.indexOf(lead.id) < 0) {
+                    filteredLeads.push(lead);
+                }
+            });
+
+            dispatch(leadsFetchSuccess(filteredLeads));
+            return filteredLeads;
         })
         .catch(error => {
             dispatch(leadsFetchFailure(error));
