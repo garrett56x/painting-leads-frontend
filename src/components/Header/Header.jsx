@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { userLogout } from '../../actions/user';
+import { userActions } from '../../actions/user';
 import SVG from 'react-inlinesvg';
 import './Header.scss';
 // @ts-ignore
@@ -36,7 +36,7 @@ function mapState(state) {
 }
 
 const actionCreators = {
-  logout: userLogout
+  logout: userActions.userLogout
 }
 
 const connectedHeader = connect(mapState, actionCreators)(Header);
