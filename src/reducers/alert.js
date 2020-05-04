@@ -1,18 +1,24 @@
-import { alertConstants } from '../constants/alert';
+import {
+  ALERT_SUCCESS,
+  ALERT_ERROR,
+  ALERT_CLEAR,
+} from '../actions/alert';
+
+// const initialState = {};
 
 export function alert(state = {}, action) {
   switch (action.type) {
-    case alertConstants.SUCCESS:
+    case ALERT_SUCCESS:
       return {
         type: 'alert-success',
         message: action.message
       };
-    case alertConstants.ERROR:
+    case ALERT_ERROR:
       return {
         type: 'alert-danger',
         message: action.message
       };
-    case alertConstants.CLEAR:
+    case ALERT_CLEAR:
       return {};
     default:
       return state

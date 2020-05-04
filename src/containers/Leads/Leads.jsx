@@ -1,26 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { leadsActions } from '../../actions/leads';
+import { getLeads, getLeadsError, getLeadsLoading } from '../../reducers/leads';
 
 class Leads extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            leads: [],
-        };
     }
 
     componentDidMount() {    
-        fetch('/api/leads')
-        .then(res => res.json())
-        .then((data) => {   
-            this.setState({ leads: data });
-        })
-        .catch(console.log);
+        this.props.fetchLeads();
     }
 
     render() {
-        const { leads } = this.state;
+        const { leads } = this.props;
 
         return (
             <div className="leads-container">
@@ -35,14 +28,18 @@ class Leads extends React.Component {
     }
 }
 
-// function mapState(state) {
-//     const { data } = state.data;
-//     return { data };
-// }
+function mapStateToProps(state) {
+    const { leads } = state;
+    return {
+        loading: getLeadsLoading(leads),
+        leads: getLeads(leads),
+        error: getLeadsError(leads),
+    };
+}
 
-// const actionCreators = {
-// }
+const mapDispatchToProps = {
+    fetchLeads: leadsActions.fetchLeads,
+};
 
-// const connectedLeads = connect(mapState, actionCreators)(Leads);
-// export { connectedLeads as Leads };
-export { Leads };
+const connectedLeads = connect(mapStateToProps, mapDispatchToProps)(Leads);
+export { connectedLeads as Leads };

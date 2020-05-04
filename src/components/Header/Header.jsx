@@ -30,14 +30,14 @@ class Header extends React.Component {
   }
 };
 
-function mapState(state) {
+function mapStateToProps(state) {
   const { loggedIn } = state.user;
   return { loggedIn };
 }
 
-const actionCreators = {
+const mapDispatchToProps = {
   logout: userActions.userLogout
 }
 
-const connectedHeader = connect(mapState, actionCreators)(Header);
+const connectedHeader = connect(mapStateToProps, mapDispatchToProps)(Header);
 export { connectedHeader as Header };

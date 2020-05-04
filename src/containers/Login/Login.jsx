@@ -73,15 +73,15 @@ class Login extends React.Component {
     }
 }
 
-function mapState(state) {
-    const { loggingIn } = state.authentication;
+function mapStateToProps(state) {
+    const { loggingIn } = state.user;
     return { loggingIn };
 }
 
-const actionCreators = {
+const mapDispatchToProps = {
     login: userActions.userLogin,
     logout: userActions.userLogout
 };
 
-const connectedLogin = connect(mapState, actionCreators)(Login);
+const connectedLogin = connect(mapStateToProps, mapDispatchToProps)(Login);
 export { connectedLogin as Login };
