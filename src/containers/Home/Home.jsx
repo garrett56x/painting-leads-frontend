@@ -14,6 +14,7 @@ class Home extends React.Component {
 
     render() {
         const { leads, loading, error, name } = this.props;
+        console.log(leads);
 
         if (error) {
             return (
@@ -36,7 +37,7 @@ class Home extends React.Component {
                 <p>You have {leads.length} lead{leads.length === 1 ? '' : 's'}.</p>
                 <div className="leads">
                     {leads.map((lead) => (
-                        <li key={lead.lead_id}>{lead.name} | {lead.notes}</li>
+                        <li key={lead.id}>{lead.name} | {lead.notes}</li>
                     ))}
                 </div>
             </div>

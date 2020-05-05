@@ -25,14 +25,14 @@ export function leadsFetchFailure(error) {
 function fetchLeads() {
     return (dispatch, getState) => {
         dispatch(leadsFetchRequest());
-        fetch(`/api/leads`)
+        fetch("/api/leads")
         .then(res => res.json())
         .then(res => {
             if (res.error) {
                 throw(res.error);
             }
             const userLeadIds = [];
-            getState().userLeads.leads.forEach((userLead) => userLeadIds.push(userLead.lead_id));
+            getState().userLeads.leads.forEach((userLead) => userLeadIds.push(userLead.id));
 
             const filteredLeads = [];
             res.forEach((lead) => {
