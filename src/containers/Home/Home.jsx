@@ -14,7 +14,6 @@ class Home extends React.Component {
 
     render() {
         const { leads, loading, error, name } = this.props;
-        console.log(leads);
 
         if (error) {
             return (

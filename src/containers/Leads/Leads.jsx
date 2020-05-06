@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { leadsActions } from '../../actions/leads';
+import { userLeadsActions } from '../../actions/userLeads';
 import { getLeads, getLeadsError, getLeadsLoading } from '../../reducers/leads';
 
 class Leads extends React.Component {
@@ -12,6 +13,10 @@ class Leads extends React.Component {
         this.props.fetchLeads();
     }
 
+    buyLead = (id) => {
+        this.props.purchaseLeads([id]);
+    }
+
     render() {
         const { leads } = this.props;
 
@@ -20,7 +25,10 @@ class Leads extends React.Component {
                 <h1>Leads</h1>
                 <div className="leads">
                     {leads.map((lead) => (
-                        <li key={lead.id}>{lead.name}</li>
+                        <li key={lead.id}>
+                            {lead.name}
+                            <button onClick={() => this.buyLead(lead.id)}>Buy</button>
+                        </li>
                     ))}
                 </div>
             </div>
@@ -39,6 +47,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
     fetchLeads: leadsActions.fetchLeads,
+    purchaseLeads: userLeadsActions.purchaseUserLeads,
 };
 
 const connectedLeads = connect(mapStateToProps, mapDispatchToProps)(Leads);
