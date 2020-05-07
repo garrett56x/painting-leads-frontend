@@ -1,15 +1,19 @@
 import React from 'react';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Link, Redirect, Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
+import SVG from 'react-inlinesvg';
 import { history } from '../helpers/history';
 import { alertActions } from '../actions/alert';
+import { userActions } from '../actions/user';
 import { PrivateRoute } from '../components/PrivateRoute';
-import { Header } from '../components/Header/Header';
+import Header from '../components/Header/Header';
 import { Home } from '../containers/Home/Home';
 import { Login } from '../containers/Login/Login';
 import { Register } from '../containers/Register/Register';
 import { Leads } from '../containers/Leads/Leads';
-// import './App.css';
+import logo from '../assets/logo.svg';
+import './App.scss';
+
 
 class App extends React.Component {
     constructor(props) {
@@ -29,7 +33,24 @@ class App extends React.Component {
                     <div className={`alert ${alert.type}`}>{alert.message}</div>
                 }
                 <Router history={history}>
-                    <Header />
+                    <Header
+                        color="dark"
+                        brand={
+                            <Link to="/" className="logo-wrapper" style={{ textDecoration: 'none' }}>
+                                <SVG src={logo} className="logo" alt="logo" />
+                                <span className="logo-title">Painting Leads</span>
+                            </Link>
+                        }
+                        rightLinks={[
+                            <div className="auth-wrapper">
+                                { this.props.loggedIn ? 
+                                <Link to="/" onClick={() => this.props.logout()}>Logout</Link>
+                                : <Link to="/login">Login</Link> 
+                                }
+                            </div>
+                        ]}
+                    >
+                    </Header>
                     <Switch>
                         <PrivateRoute exact path="/" component={Home} />
                         <Route path="/login" component={Login} />
@@ -45,11 +66,13 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
     const { alert } = state;
-    return { alert };
+    const { loggedIn } = state.user;
+    return { alert, loggedIn };
 }
 
 const mapDispatchToProps = {
     clearAlerts: alertActions.clear,
+    logout: userActions.userLogout
 };
 
 const connectedApp = connect(mapStateToProps, mapDispatchToProps)(App);

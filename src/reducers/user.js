@@ -14,6 +14,7 @@ import {
 const userId = JSON.parse(localStorage.getItem('userId'));
 
 const initialState = {
+  registering: false,
   loggingIn: false,
   loggedIn: !!userId,
   userId: userId || null,
@@ -48,10 +49,12 @@ export function user(state = initialState, action) {
     case USER_REGISTER_REQUEST:
       return {
         ...state,
+        registering: true,
       };
     case USER_REGISTER_SUCCESS:
       return {
         ...state,
+        registering: false,
       };
     case USER_REGISTER_FAILURE:
       return {

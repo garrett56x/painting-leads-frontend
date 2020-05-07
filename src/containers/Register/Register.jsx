@@ -100,7 +100,7 @@ class Register extends React.Component {
 }
 
 function mapState(state) {
-    const { registering } = state.registration;
+    const { registering } = state.user;
     return { registering };
 }
 
