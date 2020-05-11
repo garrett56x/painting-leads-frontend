@@ -5,6 +5,7 @@ import { history } from '../helpers/history';
 import { alertActions } from '../actions/alert';
 import { PrivateRoute } from '../components/PrivateRoute';
 import { CustomHeader } from '../components/CustomHeader/CustomHeader';
+import { Modal } from '../components/Modal/Modal';
 import { Home } from '../containers/Home/Home';
 import { Login } from '../containers/Login/Login';
 import { Register } from '../containers/Register/Register';
@@ -38,6 +39,7 @@ class App extends React.Component {
                         <Route path="/leads" component={Leads} />
                         <Redirect from="*" to="/" />
                     </Switch>
+                    <Modal />
                 </Router>
             </div>
         );

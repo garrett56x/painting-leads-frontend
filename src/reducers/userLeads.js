@@ -34,8 +34,6 @@ export function userLeads(state = initialState, action) {
   }
 }
 
-  
-  
 export const getUserLeads = state => state.leads;
 export const getUserLeadsLoading = state => state.loading;
 export const getUserLeadsError = state => state.error;

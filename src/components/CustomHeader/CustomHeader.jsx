@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from '../Header/Header';
+import { modalActions } from '../../actions/modal';
 import { userActions } from '../../actions/user';
 import SVG from 'react-inlinesvg';
 import './CustomHeader.scss';
@@ -28,7 +29,7 @@ class CustomHeader extends React.Component {
           <div className="auth-wrapper">
             { this.props.loggedIn ? 
             <Link to="/" onClick={() => this.props.logout()}>Logout</Link>
-            : <Link to="/login">Login</Link> 
+            : <a onClick={() => this.props.toggleModal(true)}>Login</a> 
             }
           </div>
         }
@@ -44,7 +45,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  logout: userActions.userLogout
+  logout: userActions.userLogout,
+  toggleModal: modalActions.toggle,
 }
 
 const connectedHeader = connect(mapStateToProps, mapDispatchToProps)(CustomHeader);

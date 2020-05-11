@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Button from '../../components/CustomButtons/Button';
-
 import { userActions } from '../../actions/user';
+import { modalActions } from '../../actions/modal';
 
 class Login extends React.Component {
     constructor(props) {
@@ -38,11 +38,19 @@ class Login extends React.Component {
     }
 
     render() {
-        const { loggingIn } = this.props;
+        const { loggingIn, loggedIn } = this.props;
         const { email, password, submitted } = this.state;
+        
+        if (loggedIn) {
+            return (
+                <div style={{ width: "250px" }}>
+                    Successfully logged in!
+                </div>
+            );
+        }
+
         return (
-            <div className="col-md-6 col-md-offset-3">
-                <h2>Login</h2>
+            <div style={{ width: "250px" }}>
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
                         <label htmlFor="email">Email</label>
@@ -63,11 +71,8 @@ class Login extends React.Component {
                         {loggingIn &&
                             <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                         }
-                        <Link to="/register" className="btn btn-link">Register</Link>
+                        <Link to="/register" className="btn btn-link" onClick={() => this.props.toggleModal(false)}>Register</Link>
                     </div>
-                    <p>
-                        <Link to="/leads">Leads</Link>
-                    </p>
                 </form>
             </div>
         );
@@ -75,13 +80,14 @@ class Login extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { loggingIn } = state.user;
-    return { loggingIn };
+    const { loggingIn, loggedIn } = state.user;
+    return { loggingIn, loggedIn };
 }
 
 const mapDispatchToProps = {
     login: userActions.userLogin,
-    logout: userActions.userLogout
+    logout: userActions.userLogout,
+    toggleModal: modalActions.toggle,
 };
 
 const connectedLogin = connect(mapStateToProps, mapDispatchToProps)(Login);
