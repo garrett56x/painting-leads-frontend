@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import Header from '../Header/Header';
 import { modalActions } from '../../actions/modal';
 import { userActions } from '../../actions/user';
+import LeftLinks from '../CustomHeader/LeftLinks';
+import RightLinks from '../CustomHeader/RightLinks';
 import SVG from 'react-inlinesvg';
 import './CustomHeader.scss';
 // @ts-ignore
@@ -19,19 +21,19 @@ class CustomHeader extends React.Component {
       <Header
         color="dark"
         brand="Painting Leads"
-        // leftLinks={
-        //   <Link to="/" className="logo-wrapper" style={{ textDecoration: 'none' }}>
-        //     <SVG src={logo} className="logo" alt="logo" />
-        //     <span className="logo-title">Painting Leads</span>
-        //   </Link>
-        // }
+        leftLinks={
+          <LeftLinks />
+          // <Link to="/" className="logo-wrapper" style={{ textDecoration: 'none' }}>
+          //   <SVG src={logo} className="logo" alt="logo" />
+          //   <span className="logo-title">Painting Leads</span>
+          // </Link>
+        }
         rightLinks={
-          <div className="auth-wrapper">
-            { this.props.loggedIn ? 
-            <Link to="/" onClick={() => this.props.logout()}>Logout</Link>
-            : <a onClick={() => this.props.toggleModal(true)}>Login</a> 
-            }
-          </div>
+          <RightLinks
+            loggedIn={this.props.loggedIn}
+            logout={this.props.logout}
+            toggleModal={this.props.toggleModal}
+          />
         }
       >
       </Header>
