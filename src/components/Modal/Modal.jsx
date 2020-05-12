@@ -48,6 +48,7 @@ class Modal extends React.Component {
           >
             <IconButton
               className={classes.modalCloseButton}
+              style={{ marginTop: "0px" }}
               key="close"
               aria-label="Close"
               color="inherit"
@@ -55,7 +56,7 @@ class Modal extends React.Component {
             >
               <Close className={classes.modalClose} />
             </IconButton>
-            <h4 className={classes.modalTitle}>Login</h4>
+            <h2 className={classes.modalTitle}>Login</h2>
           </DialogTitle>
           <DialogContent
             id="modal-slide-description"
@@ -66,10 +67,6 @@ class Modal extends React.Component {
           <DialogActions
             className={classes.modalFooter + " " + classes.modalFooterCenter}
           >
-            {/* <Button onClick={() => this.props.toggleModal(false)}>Never Mind</Button>
-            <Button onClick={() => this.props.toggleModal(false)} color="success">
-              Yes
-            </Button> */}
           </DialogActions>
         </Dialog>
       </div>
