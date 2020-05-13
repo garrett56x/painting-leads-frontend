@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import { userActions } from '../../actions/user';
+import Button from '../../components/CustomButtons/Button';
+import CustomInput from "../../components/CustomInput/CustomInput.js";
 
 class Register extends React.Component {
     constructor(props) {
@@ -24,12 +25,12 @@ class Register extends React.Component {
     }
 
     handleChange(event) {
-        const { name, value } = event.target;
+        const { id, value } = event.target;
         const { user } = this.state;
         this.setState({
             user: {
                 ...user,
-                [name]: value
+                [id]: value
             }
         });
     }
@@ -48,50 +49,65 @@ class Register extends React.Component {
         const { registering  } = this.props;
         const { user, submitted } = this.state;
         return (
-            <div className="col-md-6 col-md-offset-3">
-                <h2>Register</h2>
+            <div style={{ width: "400px", margin: "0 auto" }}>
+                <h1>Register</h1>
                 <form name="form" onSubmit={this.handleSubmit}>
-                    <div className={'form-group' + (submitted && !user.name ? ' has-error' : '')}>
-                        <label htmlFor="name">Name</label>
-                        <input type="text" className="form-control" name="name" value={user.name} onChange={this.handleChange} />
-                        {submitted && !user.name &&
-                            <div className="help-block">Name is required</div>
-                        }
-                    </div>
-                    <div className={'form-group' + (submitted && !user.company ? ' has-error' : '')}>
-                        <label htmlFor="company">Company Name</label>
-                        <input type="text" className="form-control" name="company" value={user.company} onChange={this.handleChange} />
-                        {submitted && !user.company &&
-                            <div className="help-block">Company Name is required</div>
-                        }
-                    </div>
-                    <div className={'form-group' + (submitted && !user.email ? ' has-error' : '')}>
-                        <label htmlFor="email">Email Address</label>
-                        <input type="text" className="form-control" name="email" value={user.email} onChange={this.handleChange} />
-                        {submitted && !user.email &&
-                            <div className="help-block">Email address is required</div>
-                        }
-                    </div>
-                    <div className={'form-group' + (submitted && !user.phone ? ' has-error' : '')}>
-                        <label htmlFor="phone">Phone Number</label>
-                        <input type="phone" className="form-control" name="phone" value={user.phone} onChange={this.handleChange} />
-                        {submitted && !user.phone &&
-                            <div className="help-block">Phone number is required</div>
-                        }
-                    </div>
-                    <div className={'form-group' + (submitted && !user.password ? ' has-error' : '')}>
-                        <label htmlFor="password">Password</label>
-                        <input type="password" className="form-control" name="password" value={user.password} onChange={this.handleChange} />
-                        {submitted && !user.password &&
-                            <div className="help-block">Password is required</div>
-                        }
-                    </div>
-                    <div className="form-group">
-                        <button className="btn btn-primary">Register</button>
+                    <CustomInput
+                        labelText={submitted && !user.name ? "Name is required" : "Name"}
+                        id="name"
+                        error={submitted && !user.name}
+                        onChange={this.handleChange}
+                        value={user.name}
+                        formControlProps={{
+                            fullWidth: true,
+                        }}
+                    />
+                    <CustomInput
+                        labelText={submitted && !user.company ? "Company name is required" : "Company Name"}
+                        id="company"
+                        error={submitted && !user.company}
+                        onChange={this.handleChange}
+                        value={user.company}
+                        formControlProps={{
+                            fullWidth: true,
+                        }}
+                    />
+                    <CustomInput
+                        labelText={submitted && !user.email ? "Email address is required" : "Email Address"}
+                        id="email"
+                        error={submitted && !user.email}
+                        onChange={this.handleChange}
+                        value={user.email}
+                        formControlProps={{
+                            fullWidth: true,
+                        }}
+                    />
+                    <CustomInput
+                        labelText={submitted && !user.phone ? "Phone number is required" : "Phone Number"}
+                        id="phone"
+                        error={submitted && !user.phone}
+                        onChange={this.handleChange}
+                        value={user.phone}
+                        formControlProps={{
+                            fullWidth: true,
+                        }}
+                    />
+                    <CustomInput
+                        labelText={submitted && !user.password ? "Password is required" : "Password"}
+                        id="password"
+                        error={submitted && !user.password}
+                        onChange={this.handleChange}
+                        value={user.password}
+                        formControlProps={{
+                            fullWidth: true,
+                        }}
+                    />
+                    <div>
+                        <Button color="primary" type="submit">Register</Button>
                         {registering && 
                             <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                         }
-                        <Link to="/" className="btn btn-link">Cancel</Link>
+                        <Button color="transparent" component={Link} to="/">Cancel</Button>
                     </div>
                 </form>
             </div>

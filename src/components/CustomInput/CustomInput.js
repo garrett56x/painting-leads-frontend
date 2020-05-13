@@ -21,6 +21,7 @@ export default function CustomInput(props) {
     type,
     id,
     onChange,
+    value,
     labelProps,
     inputProps,
     error,
@@ -76,6 +77,7 @@ export default function CustomInput(props) {
         type={type}
         id={id}
         onChange={onChange}
+        value={value}
         {...inputProps}
       />
     </FormControl>
@@ -88,6 +90,7 @@ CustomInput.propTypes = {
   type: PropTypes.string,
   id: PropTypes.string,
   onChange: PropTypes.func,
+  value: PropTypes.any,
   inputProps: PropTypes.object,
   formControlProps: PropTypes.object,
   inputRootCustomClasses: PropTypes.string,
