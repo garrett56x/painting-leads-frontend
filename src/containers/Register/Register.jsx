@@ -4,6 +4,13 @@ import { connect } from 'react-redux';
 import { userActions } from '../../actions/user';
 import Button from '../../components/CustomButtons/Button';
 import CustomInput from "../../components/CustomInput/CustomInput.js";
+import InputAdornment from "@material-ui/core/InputAdornment";
+// @material-ui/icons
+import FormatPaint from "@material-ui/icons/FormatPaint";
+import Email from "@material-ui/icons/Email";
+import Lock from "@material-ui/icons/Lock";
+import Person from "@material-ui/icons/Person";
+import Phone from "@material-ui/icons/Phone";
 
 class Register extends React.Component {
     constructor(props) {
@@ -61,6 +68,9 @@ class Register extends React.Component {
                         formControlProps={{
                             fullWidth: true,
                         }}
+                        inputProps={{
+                            endAdornment: (<InputAdornment position="end"><Person/></InputAdornment>)
+                        }}
                     />
                     <CustomInput
                         labelText={submitted && !user.company ? "Company name is required" : "Company Name"}
@@ -70,6 +80,9 @@ class Register extends React.Component {
                         value={user.company}
                         formControlProps={{
                             fullWidth: true,
+                        }}
+                        inputProps={{
+                            endAdornment: (<InputAdornment position="end"><FormatPaint/></InputAdornment>)
                         }}
                     />
                     <CustomInput
@@ -81,6 +94,9 @@ class Register extends React.Component {
                         formControlProps={{
                             fullWidth: true,
                         }}
+                        inputProps={{
+                            endAdornment: (<InputAdornment position="end"><Email/></InputAdornment>)
+                        }}
                     />
                     <CustomInput
                         labelText={submitted && !user.phone ? "Phone number is required" : "Phone Number"}
@@ -91,6 +107,9 @@ class Register extends React.Component {
                         formControlProps={{
                             fullWidth: true,
                         }}
+                        inputProps={{
+                            endAdornment: (<InputAdornment position="end"><Phone/></InputAdornment>)
+                        }}
                     />
                     <CustomInput
                         labelText={submitted && !user.password ? "Password is required" : "Password"}
@@ -100,6 +119,9 @@ class Register extends React.Component {
                         value={user.password}
                         formControlProps={{
                             fullWidth: true,
+                        }}
+                        inputProps={{
+                            endAdornment: (<InputAdornment position="end"><Lock/></InputAdornment>)
                         }}
                     />
                     <div>

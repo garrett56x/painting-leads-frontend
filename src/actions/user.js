@@ -1,4 +1,5 @@
 import { alertActions } from './alert';
+import { modalActions } from './modal';
 import { history } from '../helpers/history';
 
 export const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST';
@@ -104,7 +105,8 @@ function userLogin(email, password) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('userId', JSON.stringify(user.id));
                 dispatch(userLoginSuccess(user.id));
-                history.push('/');
+                history.push('/dashboard');
+                setTimeout(() => dispatch(modalActions.toggle(false)), 1250);
             },
             error => {
                 dispatch(userLoginFailure(error.toString()));
@@ -148,6 +150,7 @@ function register(user) {
                 user => { 
                     dispatch(userRegisterSuccess(user));
                     dispatch(alertActions.success('Registration successful'));
+                    setTimeout(() => dispatch(userLogin(user.email, user.password)), 1000);
                 },
                 error => {
                     dispatch(userRegisterFailure(error.toString()));

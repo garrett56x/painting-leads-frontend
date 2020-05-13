@@ -22,7 +22,7 @@ export default function LeftLinks(props) {
             color="transparent"
             className={classes.navLink}
             component={Link}
-            to="/"
+            to="/dashboard"
         >
             Dashboard
         </Button>

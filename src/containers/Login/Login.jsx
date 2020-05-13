@@ -1,16 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Button from '../../components/CustomButtons/Button';
 import { userActions } from '../../actions/user';
 import { modalActions } from '../../actions/modal';
-
-// material-ui components
+import Button from '../../components/CustomButtons/Button';
+import CustomInput from "../../components/CustomInput/CustomInput.js";
 import InputAdornment from "@material-ui/core/InputAdornment";
 // @material-ui/icons
 import Email from "@material-ui/icons/Email";
-// core components
-import CustomInput from "../../components/CustomInput/CustomInput.js";
+import Lock from "@material-ui/icons/Lock";
 
 class Login extends React.Component {
     constructor(props) {
@@ -81,6 +79,9 @@ class Login extends React.Component {
                         value={password}
                         formControlProps={{
                             fullWidth: true
+                        }}
+                        inputProps={{
+                            endAdornment: (<InputAdornment position="end"><Lock/></InputAdornment>)
                         }}
                     />
                     <div>
