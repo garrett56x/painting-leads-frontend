@@ -20,7 +20,7 @@ class CustomHeader extends React.Component {
     return (
       <Header
         color="dark"
-        brand="Painting Leads"
+        brand="Paint Connection"
         leftLinks={
           <LeftLinks />
           // <Link to="/" className="logo-wrapper" style={{ textDecoration: 'none' }}>

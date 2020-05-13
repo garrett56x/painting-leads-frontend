@@ -32,7 +32,10 @@ function fetchLeads() {
                 throw(res.error);
             }
             const userLeadIds = [];
-            getState().userLeads.leads.forEach((userLead) => userLeadIds.push(userLead.id));
+            const { userId } = getState().user;
+            if (userId) {
+                getState().userLeads.leads.forEach((userLead) => userLeadIds.push(userLead.id));
+            }
 
             const filteredLeads = [];
             res.forEach((lead) => {
