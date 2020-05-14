@@ -17,16 +17,18 @@ export default function LeftLinks(props) {
   const classes = useStyles();
   return (
     <List className={classes.list}>
-      <ListItem className={classes.listItem}>
-        <Button
-            color="transparent"
-            className={classes.navLink}
-            component={Link}
-            to="/dashboard"
-        >
-            Dashboard
-        </Button>
-      </ListItem>
+      {props.loggedIn && 
+        <ListItem className={classes.listItem}>
+          <Button
+              color="transparent"
+              className={classes.navLink}
+              component={Link}
+              to="/dashboard"
+          >
+              Dashboard
+          </Button>
+        </ListItem>
+      }
       <ListItem className={classes.listItem}>
         <Button
             color="transparent"

@@ -22,7 +22,9 @@ class CustomHeader extends React.Component {
         color="dark"
         brand="Paint Connection"
         leftLinks={
-          <LeftLinks />
+          <LeftLinks
+            loggedIn={this.props.loggedIn}
+          />
           // <Link to="/" className="logo-wrapper" style={{ textDecoration: 'none' }}>
           //   <SVG src={logo} className="logo" alt="logo" />
           //   <span className="logo-title">Painting Leads</span>
