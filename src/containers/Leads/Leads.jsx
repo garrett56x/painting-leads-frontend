@@ -2,7 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { leadsActions } from '../../actions/leads';
 import { userLeadsActions } from '../../actions/userLeads';
+import Button from "../../components/CustomButtons/Button.js";
+import GridContainer from "../../components/Grid/GridContainer.js";
+import GridItem from "../../components/Grid/GridItem.js";
 import { getLeads, getLeadsError, getLeadsLoading } from '../../reducers/leads';
+import './Leads.scss';
 
 class Leads extends React.Component {
     constructor(props) {
@@ -21,17 +25,25 @@ class Leads extends React.Component {
         const { leads } = this.props;
 
         return (
-            <div className="leads-container">
-                <h1>Leads</h1>
-                <div className="leads">
+            <GridContainer
+                spacing={3}
+                className="leads-container"
+                direction="row"
+                justify="center"
+                alignItems="flex-start"
+            >
+                <GridItem xs={12}>
+                    <h1>Shop Leads</h1>
+                </GridItem>
+                <GridItem xs={12} className="leads">
                     {leads.map((lead) => (
                         <li key={lead.id}>
                             {lead.name}
-                            <button onClick={() => this.buyLead(lead.id)}>Buy</button>
+                            <Button color="primary" size="sm" onClick={() => this.buyLead(lead.id)}>Buy</Button>
                         </li>
                     ))}
-                </div>
-            </div>
+                </GridItem>
+            </GridContainer>
         );
     }
 }

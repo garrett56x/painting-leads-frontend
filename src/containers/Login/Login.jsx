@@ -5,6 +5,7 @@ import { userActions } from '../../actions/user';
 import { modalActions } from '../../actions/modal';
 import Button from '../../components/CustomButtons/Button';
 import CustomInput from "../../components/CustomInput/CustomInput.js";
+import Success from "../../components/Typography/Success.js";
 import InputAdornment from "@material-ui/core/InputAdornment";
 // @material-ui/icons
 import Email from "@material-ui/icons/Email";
@@ -46,7 +47,7 @@ class Login extends React.Component {
         if (loggedIn) {
             return (
                 <div style={{ width: "250px" }}>
-                    Successfully logged in!
+                    <Success>Successfully logged in!</Success>
                 </div>
             );
         }
