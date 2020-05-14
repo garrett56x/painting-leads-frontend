@@ -48,7 +48,6 @@ export default function SnackbarContent(props) {
   }
   const [alert, setAlert] = React.useState(
     <Snack
-      style={{ marginTop: "-20px" }}
       message={
         <div>
           {snackIcon}

@@ -1,3 +1,29 @@
-.homeHero {
-    background: url('../../assets/img/bg.jpg');
+.home-hero {
+    background: url('../../assets/img/painter.jpg');
+    // transform: translate3d(0px, 0px, 0px);
+    border: 0;
+    height: 90vh;
+    margin: 0;
+    display: flex;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    max-height: 1000px;
+    align-items: center;
+    background-size: cover;
+    background-position: center center;
+    text-align: center;
+}
+.container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.title {
+    color: #FFFFFF;
+    // text-align: left;
+    text-shadow: 2px 2px 8px #000;
 }
