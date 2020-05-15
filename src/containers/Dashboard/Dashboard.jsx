@@ -1,12 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userActions } from '../../actions/user';
 import { userLeadsActions } from '../../actions/userLeads';
+import CustomMaterialTable from '../../components/CustomMaterialTable/CustomMaterialTable';
 import { getUserName } from '../../reducers/user';
 import { getUserLeads, getUserLeadsError, getUserLeadsLoading } from '../../reducers/userLeads';
 
 class Dashboard extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     componentDidMount() {
         this.props.fetchUserLeads();
         this.props.fetchUserData();
@@ -28,14 +32,20 @@ class Dashboard extends React.Component {
         }
 
         return (
-            <div className="col-md-6 col-md-offset-3">
+            <div className="dashboard" style={{ padding: "0 40px" }}>
                 <h1>Hi {name}!</h1>
                 <p>You have {leads.length} lead{leads.length === 1 ? '' : 's'}.</p>
-                <div className="leads">
-                    {leads.map((lead) => (
-                        <li key={lead.id}>{lead.name} | {lead.notes}</li>
-                    ))}
-                </div>
+                <CustomMaterialTable
+                    columns={[
+                        { title: "Name", field: "name" },
+                        { title: "Phone Number", field: "phone" },
+                        { title: "Email Address", field: "email" },
+                        { title: "Stories", field: "stories", type: "numeric" },
+                        { title: "Address", field: "address1" }
+                    ]}
+                    data={leads}
+                    title="My Leads"
+                />
             </div>
         );
     }

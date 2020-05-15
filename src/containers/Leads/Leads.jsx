@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { leadsActions } from '../../actions/leads';
 import { userLeadsActions } from '../../actions/userLeads';
 import Button from "../../components/CustomButtons/Button.js";
+import CustomMaterialTable from '../../components/CustomMaterialTable/CustomMaterialTable';
 import GridContainer from "../../components/Grid/GridContainer.js";
 import GridItem from "../../components/Grid/GridItem.js";
 import { getLeads, getLeadsError, getLeadsLoading } from '../../reducers/leads';
@@ -36,12 +37,23 @@ class Leads extends React.Component {
                     <h1>Shop Leads</h1>
                 </GridItem>
                 <GridItem xs={12} className="leads">
-                    {leads.map((lead) => (
+                    {/* {leads.map((lead) => (
                         <li key={lead.id}>
                             {lead.name}
                             <Button color="primary" size="sm" onClick={() => this.buyLead(lead.id)}>Buy</Button>
                         </li>
-                    ))}
+                    ))} */}
+                    <CustomMaterialTable
+                        columns={[
+                            { title: "Name", field: "name" },
+                            { title: "Stories", field: "stories", type: "numeric" },
+                            { title: "City", field: "city" },
+                            { title: "State", field: "state" },
+                            { title: "Zip Code", field: "zip" }
+                        ]}
+                        data={leads}
+                        title="Shop Leads"
+                    />
                 </GridItem>
             </GridContainer>
         );
