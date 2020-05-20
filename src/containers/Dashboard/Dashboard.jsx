@@ -34,7 +34,6 @@ class Dashboard extends React.Component {
         return (
             <div className="dashboard" style={{ padding: "0 40px" }}>
                 <h1>Hi {name}!</h1>
-                <p>You have {leads.length} lead{leads.length === 1 ? '' : 's'}.</p>
                 <CustomMaterialTable
                     columns={[
                         { title: "Name", field: "name" },
