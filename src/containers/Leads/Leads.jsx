@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import { leadsActions } from '../../actions/leads';
 import { userLeadsActions } from '../../actions/userLeads';
 import Button from "../../components/CustomButtons/Button.js";
@@ -25,6 +26,20 @@ class Leads extends React.Component {
     render() {
         const { leads } = this.props;
 
+        leads.forEach((lead) => {
+            lead.buyButton = <Button color="primary" size="sm" onClick={() => this.buyLead(lead.id)}>Buy</Button>
+            const createdAt = new Date(lead.created_at);
+            lead.created_at = moment(createdAt).fromNow();
+
+            if (lead.type1 === "Both") {
+                lead.type1 = "Interior & Exterior";
+            }
+
+            if (!lead.rooms) {
+                lead.rooms = "N/A";
+            }
+        });
+
         return (
             <GridContainer
                 spacing={3}
@@ -37,19 +52,19 @@ class Leads extends React.Component {
                     <h1>Shop Leads</h1>
                 </GridItem>
                 <GridItem xs={12} className="leads">
-                    {/* {leads.map((lead) => (
-                        <li key={lead.id}>
-                            {lead.name}
-                            <Button color="primary" size="sm" onClick={() => this.buyLead(lead.id)}>Buy</Button>
-                        </li>
-                    ))} */}
                     <CustomMaterialTable
                         columns={[
-                            { title: "Name", field: "name" },
+                            { title: "Type", field: "type1" },
+                            { title: "Type 2", field: "type2" },
+                            { title: "Size", field: "size" },
                             { title: "Stories", field: "stories", type: "numeric" },
+                            { title: "Rooms", field: "rooms", type: "numeric" },
                             { title: "City", field: "city" },
                             { title: "State", field: "state" },
-                            { title: "Zip Code", field: "zip" }
+                            { title: "Zip Code", field: "zip" },
+                            { title: "Date Requested", field: "created_at" },
+                            { title: "Price ($)", field: "price", type: "numeric" },
+                            { title: "Buy", field: "buyButton" }
                         ]}
                         data={leads}
                         title="Shop Leads"
