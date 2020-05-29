@@ -26,20 +26,6 @@ class Leads extends React.Component {
     render() {
         const { leads } = this.props;
 
-        leads.forEach((lead) => {
-            lead.buyButton = <Button color="primary" size="sm" onClick={() => this.buyLead(lead.id)}>Buy</Button>
-            const createdAt = new Date(lead.created_at);
-            lead.created_at = moment(createdAt).fromNow();
-
-            if (lead.type1 === "Both") {
-                lead.type1 = "Interior & Exterior";
-            }
-
-            if (!lead.rooms) {
-                lead.rooms = "N/A";
-            }
-        });
-
         return (
             <GridContainer
                 spacing={3}
@@ -54,17 +40,42 @@ class Leads extends React.Component {
                 <GridItem xs={12} className="leads">
                     <CustomMaterialTable
                         columns={[
-                            { title: "Type", field: "type1" },
+                            {
+                                title: "Type",
+                                field: "type1",
+                                render: lead => lead.type1 === "Both" ? "Interior & Exterior" : lead.type1
+                            },
                             { title: "Type 2", field: "type2" },
                             { title: "Size", field: "size" },
                             { title: "Stories", field: "stories", type: "numeric" },
-                            { title: "Rooms", field: "rooms", type: "numeric" },
+                            {
+                                title: "Rooms",
+                                field: "rooms",
+                                type: "numeric",
+                                render: lead => lead.rooms || "N/A" 
+                            },
                             { title: "City", field: "city" },
                             { title: "State", field: "state" },
                             { title: "Zip Code", field: "zip" },
-                            { title: "Date Requested", field: "created_at" },
-                            { title: "Price ($)", field: "price", type: "numeric" },
-                            { title: "Buy", field: "buyButton" }
+                            {
+                                title: "Date Requested",
+                                field: "created_at",
+                                render: lead => {
+                                    const createdAt = new Date(lead.created_at);
+                                    const formattedCreatedAt = moment(createdAt).fromNow();
+                                    return formattedCreatedAt;
+                                }
+                            },
+                            {
+                                title: "Price",
+                                field: "price",
+                                render: lead => lead.price === 0 ? 'Free!' : `$${lead.price}`
+                            },
+                            {
+                                title: "Buy",
+                                field: "id",
+                                render: lead => <Button color="primary" size="sm" onClick={() => this.buyLead(lead.id)}>Buy</Button>
+                            }
                         ]}
                         data={leads}
                         title="Shop Leads"
