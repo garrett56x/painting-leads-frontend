@@ -38,9 +38,25 @@ class Dashboard extends React.Component {
                     columns={[
                         { title: "Name", field: "name" },
                         { title: "Phone Number", field: "phone" },
+                        { title: "Address", field: "address1" },
+                        { title: "City", field: "city" },
+                        { title: "State", field: "state" },
+                        { title: "Zip Code", field: "zip" },
                         { title: "Email Address", field: "email" },
-                        { title: "Stories", field: "stories", type: "numeric" },
-                        { title: "Address", field: "address1" }
+                        {
+                            title: "Type",
+                            field: "type1",
+                            render: lead => lead.type1 === "Both" ? "Interior & Exterior" : lead.type1
+                        },
+                        { title: "Type 2", field: "type2" },
+                        // { title: "Size", field: "size" },
+                        // { title: "Stories", field: "stories", type: "numeric" },
+                        // {
+                        //     title: "Rooms",
+                        //     field: "rooms",
+                        //     type: "numeric",
+                        //     render: lead => lead.rooms || "N/A" 
+                        // },
                     ]}
                     data={leads}
                     title="My Leads"
