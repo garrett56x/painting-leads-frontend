@@ -14,7 +14,7 @@ class Home extends React.Component {
                 <div className="page-header header-filter clear-filter jss187 home-hero" data-parallax="true">
                     <div className="container">
                         <div className="title">
-                            <h1>Buy Painting Leads For Cheap!</h1>
+                            <h1>Connecting Painters and Homeowners!</h1>
                         </div>
                         <div>
                             <Button color="primary" component={Link} to="/leads">Get Started</Button>
