@@ -3,9 +3,11 @@ import { Redirect, Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { history } from '../helpers/history';
 import { Alert } from '../components/Alert/Alert';
-import { PrivateRoute } from '../components/PrivateRoute';
 import { CustomHeader } from '../components/CustomHeader/CustomHeader';
+import Footer from '../components/Footer/Footer';
+import { PrivateRoute } from '../components/PrivateRoute';
 import { Dashboard } from '../containers/Dashboard/Dashboard';
+import { About } from '../containers/About/About';
 import { Home } from '../containers/Home/Home';
 import { Leads } from '../containers/Leads/Leads';
 import { Login } from '../containers/Login/Login';
@@ -30,8 +32,10 @@ class App extends React.Component {
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
                     <Route path="/leads" component={Leads} />
+                    <Route path="/about" component={About} />
                     <Redirect from="*" to="/" />
                 </Switch>
+                <Footer whiteFont={true} />
                 <Modal />
             </Router>
         );

@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
 import { modalActions } from '../../actions/modal';
 import { userActions } from '../../actions/user';
-import LeftLinks from '../CustomHeader/LeftLinks';
-import RightLinks from '../CustomHeader/RightLinks';
-import SVG from 'react-inlinesvg';
+// import LeftLinks from '../CustomHeader/LeftLinks';
+// import RightLinks from '../CustomHeader/RightLinks';
+// import SVG from 'react-inlinesvg';
 import './CustomHeader.scss';
 // @ts-ignore
-import logo from '../../assets/logo.svg';
+// import logo from '../../assets/logo.svg';
 
 class CustomHeader extends React.Component {
   constructor(props) {
@@ -19,22 +20,23 @@ class CustomHeader extends React.Component {
     return (
       <Header
         color="dark"
-        brand="Paint Connection"
-        leftLinks={
-          <LeftLinks
-            loggedIn={this.props.loggedIn}
-          />
+        brand="The Paint Connection"
+        // leftLinks={
+        //   <LeftLinks
+        //     loggedIn={this.props.loggedIn}
+        //   />
           // <Link to="/" className="logo-wrapper" style={{ textDecoration: 'none' }}>
           //   <SVG src={logo} className="logo" alt="logo" />
           //   <span className="logo-title">Painting Leads</span>
           // </Link>
-        }
+        // }
         rightLinks={
-          <RightLinks
-            loggedIn={this.props.loggedIn}
-            logout={this.props.logout}
-            toggleModal={this.props.toggleModal}
-          />
+          <Link to="/about" style={{ textDecoration: 'none', color: "#fff" }}>About</Link>
+          // <RightLinks
+          //   loggedIn={this.props.loggedIn}
+          //   logout={this.props.logout}
+          //   toggleModal={this.props.toggleModal}
+          // />
         }
       >
       </Header>

@@ -1,8 +1,7 @@
 .home-hero {
-    background: url('../../assets/img/painter.png');
-    // transform: translate3d(0px, 0px, 0px);
+    background-image: linear-gradient(rgba(22, 22, 22, 0.25) 0%, rgba(22, 22, 22, 0.25) 100%), url('../../assets/img/painter.png');
     border: 0;
-    height: 90vh;
+    height: 80vh;
     margin: 0;
     display: flex;
     padding: 0;
@@ -22,8 +21,41 @@
     padding-right: 15px;
 }
 
-.title {
+.title h1 {
     color: #FFFFFF;
-    // text-align: left;
-    text-shadow: 2px 2px 8px #000;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 44px;
+    width: 60%;
+    margin: 20px auto;
+    text-align: left;
+}
+
+.connect {
+    text-align: center;
+    margin: 30px 0;
+}
+    .connect .social-icon-buttons .social-icon-button {
+        margin: 0 18px;
+    }
+        .connect .social-icon-buttons .social-icon-button .MuiSvgIcon-root {
+            height: 2em;
+            width: 2em;
+        }
+            .connect .social-icon-buttons .facebook-button {
+                color: rgb(24, 119, 242);
+            }
+
+            .connect .social-icon-buttons .twitter-button {
+                color: rgb(29, 161, 242);
+            }
+
+            .connect .social-icon-buttons .instagram-button {
+                color: rgb(225, 48, 108);;
+            }
+
+@media only screen and (max-width: 650px) {
+    .title h1 {
+        font-size: 35px;
+    }
 }
