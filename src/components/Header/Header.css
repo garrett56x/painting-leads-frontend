@@ -1,0 +1,8 @@
+.header {
+  background-color: #212121;
+  color: #ffffff;
+}
+
+.title {
+  flex-grow: 1;
+}
