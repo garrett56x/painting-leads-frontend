@@ -1,13 +1,17 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   header: {
     backgroundColor: "#212121",
     display: "flex",
     justifyContent: "center",
   },
   toolBar: {
-    // maxWidth: "1140px",
+    [theme.breakpoints.up("lg")]: {
+      width: "100%",
+      maxWidth: "1140px",
+      margin: "auto",
+    },
   },
   title: {
     flexGrow: 1,

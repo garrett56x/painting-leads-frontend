@@ -1,19 +1,34 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   footer: {
-    display: "flex",
-    alignItems: "center",
     backgroundColor: "#212121",
     color: "#ffffff",
-    height: "34px",
-    padding: "15px 20px",
+    display: "flex",
+    padding: "8px 0",
+    zIndex: 2,
+    position: "relative",
+    textAlign: "center",
+  },
+  container: {
+    padding: "0 20px",
+    width: "100%",
+    [theme.breakpoints.up("lg")]: {
+      maxWidth: "1140px",
+      margin: "auto",
+    },
   },
   left: {
-    flexGrow: 1,
+    float: "left",
+    display: "block",
   },
   footerLink: {
     color: "#ffffff",
+  },
+  right: {
+    float: "right",
+    display: "block",
+    padding: "12px 0",
   },
 }));
 

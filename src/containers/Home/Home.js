@@ -6,17 +6,16 @@ import "./Home.css";
 export default function Home() {
   return (
     <div>
-      <div
-        className="page-header header-filter clear-filter jss187 home-hero"
-        data-parallax="true"
-      >
+      <div className="home-hero">
         <div className="container">
           <div className="title">
-            <h1>Connecting Homeowners and Painters</h1>
+            <Typography variant="h1">
+              Connecting Homeowners and Painters
+            </Typography>
           </div>
           {/* <div>
-                            <Button color="primary" component={Link} to="/leads">Get Started</Button>
-                        </div> */}
+            <Button color="primary" component={Link} to="/leads">Get Started</Button>
+          </div> */}
         </div>
       </div>
       <div className="connect">

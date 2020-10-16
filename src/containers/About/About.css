@@ -1,18 +1,19 @@
 .about {
-    text-align: center;
+  text-align: center;
+  min-height: calc(100vh - 128px);
 }
 
-    .about .content {
-        max-width: 45%;
-        margin: auto;
-        padding: 25px;
-    }
-        .about .content .content-section {
-            margin: 50px 0;
-        }
+.about .content {
+  max-width: 45%;
+  margin: auto;
+  padding: 25px;
+}
+.about .content .content-section {
+  margin: 50px 0;
+}
 
 @media only screen and (max-width: 800px) {
-    .about .content {
-        max-width: 100%;
-    }
+  .about .content {
+    max-width: 100%;
+  }
 }
