@@ -3,13 +3,6 @@ import { IconButton, Typography } from "@material-ui/core";
 import { Facebook, Twitter, Instagram } from "@material-ui/icons";
 import "./Home.css";
 
-// const styles = {
-//   largeIcon: {
-//     width: 60,
-//     height: 60,
-//   },
-// };
-
 export default function Home() {
   return (
     <div>
@@ -30,7 +23,6 @@ export default function Home() {
         <Typography variant="h4">Connect With Us</Typography>
         <div className="social-icon-buttons">
           <IconButton
-            // iconStyle={styles.largeIcon}
             aria-label="facebook"
             className="social-icon-button facebook-button"
             href="https://www.facebook.com/The-Paint-Connection-107887174318905"

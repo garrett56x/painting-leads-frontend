@@ -1,30 +1,29 @@
 import React from "react";
 import { render } from "react-dom";
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
+import { ThemeProvider } from "@material-ui/core";
+import { createMuiTheme } from "@material-ui/core/styles";
 import About from "../containers/About/About";
+import Header from "../components/Header/Header";
 import Home from "../containers/Home/Home";
-import "./App.css";
+import Footer from "../components/Footer/Footer";
+import theme from "./theme.js";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const appTheme = createMuiTheme(theme);
 
-  render() {
-    return (
-      <React.StrictMode>
-        <div>
-          <header>
-            <Link to="/">The Paint Connection</Link>
-          </header>
-          <Router>
-            <Home path="/" />
-            <About path="/about" />
-          </Router>
-        </div>
-      </React.StrictMode>
-    );
-  }
+function App() {
+  return (
+    <React.StrictMode>
+      <ThemeProvider theme={appTheme}>
+        <Header />
+        <Router>
+          <Home path="/" />
+          <About path="/about" />
+        </Router>
+        <Footer />
+      </ThemeProvider>
+    </React.StrictMode>
+  );
 }
 
 render(<App />, document.getElementById("root"));

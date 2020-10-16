@@ -2,15 +2,16 @@ import React from "react";
 import { Link } from "@reach/router";
 import { Button, IconButton, Typography } from "@material-ui/core";
 import { Facebook, Twitter, Instagram } from "@material-ui/icons";
-import "./Footer.css";
+import useStyles from "./FooterStyles";
 
 export default function Footer() {
+  const classes = useStyles();
   return (
-    <footer className="footer">
-      <div className="left">
+    <footer className={classes.footer}>
+      <div className={classes.left}>
         <IconButton
           aria-label="facebook"
-          className="social-icon-button facebook-button"
+          className={classes.footerLink}
           href="https://www.facebook.com/The-Paint-Connection-107887174318905"
           target="_blank"
         >
@@ -18,7 +19,7 @@ export default function Footer() {
         </IconButton>
         <IconButton
           aria-label="twitter"
-          className="social-icon-button twitter-button"
+          className={classes.footerLink}
           href="https://twitter.com/thepaintconnec1"
           target="_blank"
         >
@@ -26,17 +27,17 @@ export default function Footer() {
         </IconButton>
         <IconButton
           aria-label="instagram"
-          className="social-icon-button instagram-button"
+          className={classes.footerLink}
           href="https://www.instagram.com/the_paint_connection/"
           target="_blank"
         >
           <Instagram />
         </IconButton>
-        <Button component={Link} to="/about">
+        <Button className={classes.footerLink} component={Link} to="/about">
           About Us
         </Button>
       </div>
-      <Typography className="right">
+      <Typography>
         Copyright &copy; 2020 The Paint Connection - All Rights Reserved
       </Typography>
     </footer>

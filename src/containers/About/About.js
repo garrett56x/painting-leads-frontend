@@ -16,8 +16,9 @@ export default function About() {
             We believe getting more than one estimate is essential, not only to
             compare prices, but also to find the painter you feel most
             comfortable trusting with your home. At the same time, we will not
-            bombard you with phone calls; you tell us how many estimates you're
-            looking for, and that will be how many painters we connect you with.
+            bombard you with phone calls; you tell us how many estimates
+            you&apos;re looking for, and that will be how many painters we
+            connect you with.
           </Typography>
         </div>
         <div className="content-section">
@@ -28,8 +29,8 @@ export default function About() {
             It is our goal to connect you with homeowners who are truly looking
             to get their house painted! When it comes to shopping for leads, we
             put the power in your hands! You can browse through the types of
-            leads you're looking for, see the cost upfront, and only purchase
-            the ones that are the right fit for you.
+            leads you&apos;re looking for, see the cost upfront, and only
+            purchase the ones that are the right fit for you.
           </Typography>
         </div>
         <div className="content-section">
@@ -37,11 +38,11 @@ export default function About() {
             Customer Satisfaction Guaranteed
           </Typography>
           <Typography variant="body1">
-            While we try our best, we understand the right fit doesn't always
-            happen. If you're a painter and think you purchased a phony lead,
-            let us know and we'll work with you to find a better one. If you're
-            a homeowner and you didn't get the number of estimates you
-            requested, you can request more at anytime.
+            While we try our best, we understand the right fit doesn&apos;t
+            always happen. If you&apos;re a painter and think you purchased a
+            phony lead, let us know and we&apos;ll work with you to find a
+            better one. If you&apos;re a homeowner and you didn&apos;t get the
+            number of estimates you requested, you can request more at anytime.
           </Typography>
         </div>
       </div>

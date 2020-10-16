@@ -1,26 +1,19 @@
 import React from "react";
 import { Link } from "@reach/router";
-import { AppBar, Button, Toolbar, Typography } from "@material-ui/core";
-// import { makeStyles } from "@material-ui/core/styles";
-import "./Header.css";
-
-// const useStyles = makeStyles((theme) => ({
-//   title: {
-//     flexGrow: 1,
-//   },
-// }));
+import { AppBar, Button, Toolbar } from "@material-ui/core";
+import useStyles from "./HeaderStyles";
 
 export default function Header() {
-  //   const classes = useStyles();
+  const classes = useStyles();
   return (
-    <AppBar className="header" position="static">
-      <Toolbar>
-        <Link to="/">
-          <Typography variant="h6" className="title">
+    <AppBar className={classes.header} position="static">
+      <Toolbar className={classes.toolBar}>
+        <span className={classes.title}>
+          <Button className={classes.button} component={Link} to="/">
             The Paint Connection
-          </Typography>
-        </Link>
-        <Button component={Link} to="/about">
+          </Button>
+        </span>
+        <Button className={classes.button} component={Link} to="/about">
           About
         </Button>
       </Toolbar>
