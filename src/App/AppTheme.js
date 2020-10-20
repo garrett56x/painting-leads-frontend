@@ -7,7 +7,12 @@ const appTheme = createMuiTheme({
     },
   },
   typography: {},
-  overrides: {},
+  overrides: {
+    MuiSvgIcon: {
+      height: "2em",
+      width: "2em",
+    },
+  },
 });
 
 export default appTheme;

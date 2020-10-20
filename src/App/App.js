@@ -4,6 +4,7 @@ import { render } from "react-dom";
 import { Router } from "@reach/router";
 import { ThemeProvider } from "@material-ui/core";
 import About from "../containers/About/About";
+import Estimate from "../containers/Estimate/Estimate";
 import Header from "../components/Header/Header";
 import Home from "../containers/Home/Home";
 import Footer from "../components/Footer/Footer";
@@ -20,6 +21,7 @@ function App() {
           <Router>
             <Home path="/" />
             <About path="/about" />
+            <Estimate path="/estimate" />
           </Router>
           <Footer />
         </div>
