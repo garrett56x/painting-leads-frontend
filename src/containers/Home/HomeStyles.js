@@ -1,8 +1,10 @@
 import { makeStyles } from "@material-ui/core/styles";
+// @ts-ignore
+import painter from "../../assets/img/painter.png";
 
 const useStyles = makeStyles((theme) => ({
   homeHero: {
-    background: `linear-gradient(rgba(22, 22, 22, 0.25) 0%, rgba(22, 22, 22, 0.25) 100%), url("../../assets/img/painter.png")`,
+    backgroundImage: `linear-gradient(rgba(22, 22, 22, 0.25) 0%, rgba(22, 22, 22, 0.25) 100%), url(${painter})`,
     border: 0,
     height: "80vh",
     margin: 0,
