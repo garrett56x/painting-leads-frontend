@@ -108,8 +108,7 @@ class Estimate extends React.Component {
             this.setState({ error: "" });
           }
         },
-        (error) => {
-          console.log("ERROR: ", error);
+        () => {
           this.setState({
             sending: false,
             error:
