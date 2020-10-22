@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "@reach/router";
 import { Typography } from "@material-ui/core";
 import PageContent from "../../components/PageContent/PageContent";
 import useStyles from "./AboutStyles";
@@ -16,7 +17,8 @@ export default function About() {
           compare prices, but also to find the painter you feel most comfortable
           trusting with your home. At the same time, we will not bombard you
           with phone calls; you tell us how many estimates you&apos;re looking
-          for, and that will be how many painters we connect you with.
+          for, and that will be how many painters we connect you with.{" "}
+          <Link to="/estimate">Request an estimate today!</Link>
         </Typography>
       </div>
       <div className={classes.contentSection}>
