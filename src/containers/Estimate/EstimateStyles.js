@@ -1,10 +1,16 @@
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles(() => ({
-  container: {
-    minHeight: "calc(100vh - 128px);",
-    textAlign: "center",
+const styles = (theme) => ({
+  formInput: {
+    width: "48%",
+    marginLeft: "5px",
+    marginRight: "5px",
+    textAlign: "left",
+    [theme.breakpoints.down("xs")]: {
+      width: "80%",
+    },
   },
-}));
+  buttonWrapper: {
+    textAlign: "right",
+  },
+});
 
-export default useStyles;
+export default styles;
